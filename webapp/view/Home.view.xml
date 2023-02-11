@@ -1,0 +1,23 @@
+<mvc:View controllerName="YVERT_WFI_GM_UI.controller.Home" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc"
+	xmlns:l="sap.ui.layout" displayBlock="true" xmlns="sap.m" xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core"
+	xmlns:semantic="sap.m.semantic">
+	<Page>
+		<headerContent>
+			<Bar>
+				<contentLeft>
+	               <Text text="{i18n>appTitle}" class="title" />
+	            </contentLeft>
+	            <contentRight>
+	                <Button id="create" type="Emphasized" visible="{= ${authorizations>/CreazioneDG} === 'X' || ${authorizations>/CreazioneDV} === 'X'}" tooltip="{i18n>btn-create}" 
+					text="{i18n>btn-create}" press="onButtonCreate"/>
+					<Button id="export" type="Emphasized" tooltip="{i18n>btn-export}" visible="{temp>/ViewExport}" text="Esporta dettaglio in XLS" press="_takeReport"/>
+	            </contentRight>
+			</Bar>	
+		</headerContent>
+		<content>
+			<core:Fragment fragmentName="YVERT_WFI_GM_UI.view.fragment.Home.FilterBar" type="XML"/>	
+			<core:Fragment fragmentName="YVERT_WFI_GM_UI.view.fragment.Home.TableMaterial" type="XML"/>
+		</content>
+	</Page>
+
+</mvc:View>

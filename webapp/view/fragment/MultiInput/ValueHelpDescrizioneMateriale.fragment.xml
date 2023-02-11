@@ -1,0 +1,23 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<SelectDialog
+		title="{i18n>table-name-column-DescMat}"
+		growing="true"
+		growingThreshold="9999" 
+		class="sapUiPopupWithPadding"
+		items="{path : '/MatchCodesSet', filters : [{ path : 'Domain', operator : 'EQ', value1 : 'MATNR'}],
+		sorter: { path: 'Name' } }"
+		search="_handleValueHelpSearch"
+		confirm="_handleValueHelpCloseStatus"
+		cancel="_handleValueHelpClose"
+		app:filterField="Name"
+		app:filterTableField="DescrizioneMateriale"
+		multiSelect="true"
+		>
+		<StandardListItem
+			iconDensityAware="false"
+			iconInset="false"
+			title="{Value}"
+			app:key="{Value}"
+			 />
+	</SelectDialog>	
+</core:FragmentDefinition>

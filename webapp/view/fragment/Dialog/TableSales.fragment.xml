@@ -1,0 +1,65 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+
+
+	<Table
+		id="tableSales"
+		inset="false" 
+		items="{
+				path: 'DatiVenditeSet>/'
+			}"
+		class="sapUiTinyMarginEnd sapUiSmallMarginTop table" 
+		width="100%">
+		<headerToolbar>
+			<OverflowToolbar>
+				<content>
+				<ToolbarSpacer />
+					<Button text="{i18n>btn-ampliamento}" tooltip="{i18n>btn-ampliamento}" type="Default" press="onExpand"
+					app:datapathmodel="DatiVenditeSet" 
+					visible="{= ${authorizations>/CreazioneDV} === 'X' &amp;&amp; ${DatiGeneraliSet>/FAM} === 'X' &amp;&amp; ${DatiGeneraliSet>/BloccoMateriale} === ''}"/>
+				</content>
+			</OverflowToolbar>
+		</headerToolbar>
+		<columns>
+			<Column  minScreenWidth="Tablet" demandPopin="true">
+				<Text text="{i18n>lblSocieta}"/>
+			</Column>
+			<Column  minScreenWidth="Tablet" demandPopin="true">
+				<Text text="{i18n>lblSVendite}"/>
+			</Column>
+			<Column minScreenWidth="Tablet" demandPopin="true">
+				<Text text="{i18n>lblDVendite}"/>
+			</Column>
+			<Column minScreenWidth="Tablet" demandPopin="true">
+				<Text text="{i18n>lblDConsegna}"/>
+			</Column>
+			<!--Column minScreenWidth="Tablet" demandPopin="true">
+				<Text text="{i18n>lblLockSales}"/>
+			</Column-->
+			<Column minScreenWidth="Tablet" demandPopin="true">
+				<Text text=""/>
+			</Column>
+		</columns>
+		<items>
+			<ColumnListItem>
+				<cells>
+					<ObjectIdentifier text="{DatiVenditeSet>Societa} - {DatiVenditeSet>DescrizioneSocieta}" app:bindedProp="DescrizioneSocieta"/>
+					<ObjectIdentifier text="{DatiVenditeSet>SocietaVendite} - {DatiVenditeSet>DescrizioneSocietaVendite}" app:bindedProp="SocietaVendite"/>
+					<ObjectIdentifier text="{DatiVenditeSet>DivisioneVendite} - {DatiVenditeSet>DescrizioneDivisioneVendite}" app:bindedProp="DivisioneVendite"/>
+					<ObjectIdentifier text="{DatiVenditeSet>DivisioneConsegna} - {DatiVenditeSet>DescrizioneDivisioneConsegna}" app:bindedProp="DivisioneConsegna"/>
+					<!--HBox class="sapUiSmallMargin" visible="{=${DatiVenditeSet>BloccoMateriale} !== '' }">
+						<core:Icon
+							src="sap-icon://locked"
+							class="size1"
+							color="#031E48" >
+						</core:Icon>
+						<ObjectIdentifier text=" {DatiVenditeSet>BloccoMateriale} - {DatiVenditeSet>DescrizioneBloccoMateriale}" app:bindedProp="BloccoMateriale"/>
+					</HBox-->
+					<Button type="Transparent" tooltip="{i18n>btn-detail-action}" app:section="DatiVenditeSet" 
+					visible="{= (${authorizations>/Societa} === ${DatiVenditeSet>Societa}) || ${authorizations>/Societa} === '*' }" icon="sap-icon://display" press="onButtonDetailActionPress" />
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+
+</core:FragmentDefinition>

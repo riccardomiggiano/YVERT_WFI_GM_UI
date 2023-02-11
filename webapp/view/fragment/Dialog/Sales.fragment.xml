@@ -1,0 +1,178 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+
+	<l:Grid defaultSpan="XL12 L12 M12 S12" vSpacing="0">
+		<VBox>
+			<items>
+				<!-- Società Vendite -->
+				<Label design="Bold" class="sapUiSmallMarginTop required" text="{i18n>lblSocieta}" />
+				<ComboBox
+					id="dialogSales13"
+					enabled="{= !${temp>/IsDetail} }"
+					selectedKey="{DatiVenditeSetDetail>/Societa}"
+					change="OnComboChange"
+					app:section="DatiVenditeSet"
+					width="100%"
+					items="{path :  '/MatchCodesSet', filters : [{ path : 'Domain', operator : 'EQ', value1 : 'BUKRS'}] }">
+					<core:Item key="{Name}" text="{Name} - {Value}"/>
+				</ComboBox>
+			</items>
+		<layoutData>
+			<l:GridData span="XL4 L4 M4 S12" />
+		</layoutData>
+		</VBox>
+		
+		<VBox>
+			<items>
+			<!-- Organizzazione Commerciale -->
+				<Label class="sapUiSmallMarginTop required" design="Bold" text="{i18n>lblSVendite}"/>
+				<ComboBox
+					id="dialogSales1"
+					enabled="{= (!${temp>/IsDetail} &amp;&amp; ${temp>/IsSocietaSelected}) }"
+					selectedKey="{DatiVenditeSetDetail>/SocietaVendite}"
+					change="OnSelectSV"
+					forceSelection="false"
+					app:section="DatiVenditeSet"
+					width="100%"
+					items="{path : 'SocietaSetDatiVenditeSet>/'}">
+					<core:Item text=""/>
+					<core:Item key="{SocietaSetDatiVenditeSet>Name}" text="{SocietaSetDatiVenditeSet>Name} - {SocietaSetDatiVenditeSet>Value}"/>
+				</ComboBox>
+			</items>
+		<layoutData>
+			<l:GridData span="XL4 L4 M4 S12"	/>
+		</layoutData>
+		</VBox>
+		
+		<VBox>
+			<items>
+			<!-- Canale di distribuzione -->
+				<Label class="sapUiSmallMarginTop required" design="Bold" text="{i18n>lblDVendite}"></Label>	
+				<ComboBox
+					id="dialogSales2"
+					enabled="{= (!${temp>/IsDetail} &amp;&amp; ${temp>/IsSocietaSelected}) }"
+					change="OnSelectSM"
+					selectedKey="{DatiVenditeSetDetail>/DivisioneVendite}"
+					app:section="DatiVenditeSet"
+					width="100%"
+					items="{path : 'MatchCodesVTWEG>/'}">
+					<core:Item key="{MatchCodesVTWEG>Name}" text="{MatchCodesVTWEG>Name} - {MatchCodesVTWEG>Value}"/>
+				</ComboBox>
+			</items>
+		<layoutData>
+			<l:GridData span="XL4 L4 M4 S12"/>
+		</layoutData>
+		</VBox>
+
+		<VBox>
+			<items>
+			<!-- Divisione Vendite -->
+				<Label design="Bold" class="sapUiSmallMarginTop required" text="{i18n>lblDConsegna}" />
+				<ComboBox
+					id="dialogSales3"
+					change="OnSelect"
+					enabled="{= ${temp>/Enabled/DatiVenditeSet} &amp;&amp; ${temp>/IsSocietaSelected} &amp;&amp; !${temp>/RifiutoFPF} }"
+					selectedKey="{DatiVenditeSetDetail>/DivisioneConsegna}"
+					width="100%"
+					items="{path : 'DivisioneConvSet>/'}">
+					<core:Item key="{DivisioneConvSet>Name}" text="{DivisioneConvSet>Name} - {DivisioneConvSet>Value}"/>
+				</ComboBox>
+
+			</items>
+		<layoutData>
+			<l:GridData span="XL4 L4 M4 S12" />
+		</layoutData>
+		</VBox>	
+			
+		<VBox>
+			<items>
+			<!-- gdc -->
+				<Label design="Bold" class="sapUiSmallMarginTop required" text="{i18n>lblGdC}" />
+				<ComboBox
+					id="dialogSales5"
+					enabled="{= ${temp>/Enabled/DatiVenditeSet} &amp;&amp; ${temp>/IsSocietaSelected} &amp;&amp; !${temp>/RifiutoFPF} }"
+					selectedKey="{DatiVenditeSetDetail>/GdC}"
+					change="OnGetCoge"
+					app:field="GCM"
+					app:section="DatiVenditeSet"
+					width="100%"
+					items="{path : 'MatchCodesGCM>/'}">
+					<core:Item text=""/>
+					<core:Item key="{MatchCodesGCM>Name}" text="{MatchCodesGCM>Name} - {MatchCodesGCM>Name2} - {MatchCodesGCM>Value2}"/>
+				</ComboBox>
+			</items>
+		<layoutData>
+			<l:GridData span="XL4 L4 M4 S12" />
+		</layoutData>
+		</VBox>
+		
+		<VBox>
+			<items>
+			<!-- COGE -->
+				<Label design="Bold" class="sapUiSmallMarginTop required" text="{i18n>lblCogeV}" />
+				<Input id="dialogSales7" enabled="false" value="{DatiVenditeSetDetail>/ContoCoGe}" maxLength="50" /> 
+			</items>
+		<layoutData>
+			<l:GridData span="XL4 L4 M4 S12"/>
+		</layoutData>
+		</VBox>
+		
+		<VBox>
+			<items>
+			<!-- Desc COGE -->
+				<Label design="Bold" class="sapUiSmallMarginTop sapUiSmallMarginEnd required" text="{i18n>lblDescrCogeV}" />
+				<Input id="dialogSales8" maxLength="50" value="{DatiVenditeSetDetail>/DescrizioneContoCoGe}" enabled="false" /> 
+			</items>
+		<layoutData>
+			<l:GridData span="XL4 L4 M4 S12"/>
+		</layoutData>
+		</VBox>
+		
+		<VBox>
+			<items>
+				<!-- Classificazione Fiscale Materiale -->
+				<Label class="sapUiSmallMarginTop required" design="Bold" text="{i18n>lblMWST}"></Label>	
+				<FlexBox>
+				<Input
+				id="dialogSales6"
+				change="OnSelect"
+				enabled="{= ( ${temp>/Enabled/DatiVenditeSet} &amp;&amp; ${temp>/IsSocietaSelected} ) 
+							|| ( ${temp>/RifiutoFPF} ) }"
+				value="{DatiVenditeSetDetail>/DescrizioneIvaVendite}"
+				showValueHelp="true"
+				app:key="{DatiVenditeSetDetail>/MWST}"
+				valueHelpOnly="true"
+				app:fieldName="CIVAVND"
+				app:section="DatiVenditeSet"
+				valueHelpRequest="handleValueHelpCIVAVND"
+				width="100%"
+				class="sapUiSmallMarginBottom">
+				<layoutData>
+					<FlexItemData growFactor="3" baseSize="90%" />
+				</layoutData>
+				</Input>
+				<Button type="Transparent" icon="sap-icon://display" text="Dettagli" 
+				visible="{= ${temp>/IsDetail} &amp;&amp; ( ${authorizations>/ApprovaFPM} === 'X' || ${authorizations>/ApprovaFPF} === 'X')  }" 
+				press="onOpenDetail"  tooltip="{i18n>btn-detail-action}" />
+				</FlexBox>
+
+			</items>
+		<layoutData>
+			<l:GridData span="XL4 L4 M4 S12"/>
+		</layoutData>
+		</VBox>
+		
+		<VBox visible="{= !${temp>/IsDetail} }">
+			<items>
+				<Label class="sapUiSmallMarginTop required" design="Bold" text="{i18n>lblFP} Acquisti"></Label>	
+				<MultiInput width="100%" id="dialogSales9" enabled="{= (!${temp>/IsDetail} &amp;&amp; ${temp>/IsSocietaSelected}) }" 
+				app:fieldName="FPAList" tokenUpdate="onEditToken" valueHelpRequest="handleValueHelp" />
+
+			</items>
+		<layoutData>
+			<l:GridData span="XL4 L4 M4 S12"/>
+		</layoutData>
+		</VBox>		
+	</l:Grid>	
+		
+</core:FragmentDefinition>

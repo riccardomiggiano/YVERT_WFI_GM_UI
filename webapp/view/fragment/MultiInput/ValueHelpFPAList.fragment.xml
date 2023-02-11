@@ -1,0 +1,25 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<SelectDialog
+		title="{i18n>lblFP} Acquisti"
+		id="FPAList"
+		growing="true"
+		growingThreshold="9999"
+		class="sapUiPopupWithPadding"
+		items="{path : 'FPAListSet>/' }"
+		search="_handleValueHelpSearch"
+		confirm="_handleValueHelpCloseListFP"
+		cancel="closeExpandDialog"
+		app:filterName="FPAList"
+		app:filterField="Societa"
+		app:InputField="dialogAddSales10"
+		multiSelect="{= ${temp>/IsDetail} ? true : false }">
+		<StandardListItem
+			iconDensityAware="false"
+			iconInset="false"
+			title="{FPAListSet>DescrizioneSocieta}"
+			description="{FPAListSet>Societa}"
+			app:key="{FPAListSet>Societa}"
+			 />
+	</SelectDialog>	
+</core:FragmentDefinition>
+

@@ -1,0 +1,28 @@
+<core:FragmentDefinition 
+	xmlns="sap.m" 
+	xmlns:core="sap.ui.core"
+	xmlns:l="sap.ui.layout" 
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	
+		<Panel visible="{= (${DatiGeneraliSet>/SAM} === 'A1' || ${DatiGeneraliSet>/SAM} === 'R1') ? false : true }">
+			<core:Fragment fragmentName="YVERT_WFI_GM_UI.view.fragment.Dialog.TablePurchase" type="XML" />
+		</Panel>
+		
+		<Panel id="DetailPurchase" visible="{= (${DatiGeneraliSet>/SAM} === 'A1' || ${DatiGeneraliSet>/SAM} === 'AA' || ${DatiGeneraliSet>/SAM} === 'R1') ? true : false  || ${temp>/IsVisibleDetailDatiAcquistiSet} }">
+			<OverflowToolbar id="DAToolbar" class="ss-toolbar" visible="{= ${DatiGeneraliSet>/FAM} === '' }">
+				<ToolbarSpacer/>
+				<Button text="{i18n>btn-save}" icon="sap-icon://accept" tooltip="{i18n>btn-save}" type="Default" press="OnCreate" app:datapathmodel="DatiAcquistiSet" 
+					visible="{= (${authorizations>/ApprovaFPA} === 'X' || ${authorizations>/CreazioneDA} === 'X') &amp;&amp; 
+					${DatiGeneraliSet>/SAM} === 'A1' &amp;&amp; ${temp>/Enabled/DatiAcquistiSet} === false}" />
+				
+				<Button text="{i18n>btn-reject}" tooltip="{i18n>btn-reject}" icon="sap-icon://decline" type="Default" press="onRejectPress" app:action="R1" app:datapathmodel="DatiAcquistiSet" 
+					visible="{= ${authorizations>/ApprovaFPA} === 'X' &amp;&amp; ${DatiGeneraliSet>/SAM} === 'A1'}"/>
+
+				<Button text="{= ${temp>/isClicked/DatiAcquistiSet} === true ? 'Salva' : 'Modifica' }" icon="{= ${temp>/isClicked/DatiAcquistiSet} === true ? 'sap-icon://accept' : 'sap-icon://edit'}" tooltip="{= ${temp>/isClicked/DatiAcquistiSet} === true ? 'Salva' : 'Modifica' }" type="Default" press="onSectionEditPress" 
+				app:datapathmodel="DatiAcquistiSet" app:datapathmodelDet="DatiAcquistiSetDetail"
+					visible="{= (${authorizations>/ModificaDA} === 'X' &amp;&amp; ${DatiGeneraliSet>/SAM}.charAt(0) === 'R' &amp;&amp; ${DatiGeneraliSet>/SendToFPA} === 'X') ? true : false }"/>
+			</OverflowToolbar>
+			<core:Fragment fragmentName="YVERT_WFI_GM_UI.view.fragment.Dialog.Purchase" type="XML" />
+		</Panel>
+
+</core:FragmentDefinition>

@@ -1,0 +1,96 @@
+<mvc:View controllerName="YVERT_WFI_GM_UI.controller.Detail" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc"
+	xmlns:l="sap.ui.layout" displayBlock="true" xmlns="sap.m" xmlns:form="sap.ui.layout.form" xmlns:x="sap.uxap" xmlns:core="sap.ui.core"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+
+			<Page class="title" showNavButton="true" navButtonPress="onNavBack">
+
+				<content>
+					<Panel>
+					
+						<x:ObjectPageLayout id="ObjectPageLayout" alwaysShowContentHeader="false" class="obj">
+							<x:headerTitle>
+								<x:ObjectPageHeader objectTitle="{DatiGeneraliSet>/CodiceMateriale}">
+									<x:actions>
+										<Button press="onApproveRejectPress" type="Transparent" icon="sap-icon://accept" text="{i18n>btn-approve}" app:action="{= ${DatiGeneraliSet>/SAM} === 'A2' ? 'A3' : 'A' }" visible="{= (${authorizations>/ApprovaFPM} === 'X'  &amp;&amp; ${DatiGeneraliSet>/SAM} === 'A2') || (${authorizations>/ApprovaFPF} === 'X'  &amp;&amp; ${DatiGeneraliSet>/SAM} === 'A3') }"/>
+										<Button press="onRejectPress" type="Transparent" icon="sap-icon://decline" text="{i18n>btn-reject}" app:action="{= ${DatiGeneraliSet>/SAM} === 'A2' ? 'R2' : 'R3' }" visible="{= (${authorizations>/ApprovaFPM} === 'X'  &amp;&amp; ${DatiGeneraliSet>/SAM} === 'A2') || (${authorizations>/ApprovaFPF} === 'X'  &amp;&amp; ${DatiGeneraliSet>/SAM} === 'A3') }"/>
+										<!--Button press="onTotalBlock" 
+											type="Transparent" 
+											icon="sap-icon://locked" 
+											text="{i18n>btn-tot-lock}" 
+											tooltip="{i18n>btn-tot-lock}" 
+											app:action="BT" 
+											visible="{= (${authorizations>/ApprovaFPM} === 'X'  &amp;&amp; ${DatiGeneraliSet>/SAM} === 'A') &amp;&amp; ${DatiGeneraliSet>/BloccoMateriale} === '' }"/-->
+									</x:actions>
+								</x:ObjectPageHeader>
+							</x:headerTitle>	
+							
+							<x:headerContent>
+							<l:VerticalLayout class="sapUiContentPadding equalColumns" width="100%">
+							<FlexBox>
+								<VBox>
+									<items>
+									<ObjectAttribute class="object-info-label" text="{DatiGeneraliSet>/DescrizioneMateriale}" />
+									<!-- ObjectAttribute class="object-info-label" title="{i18n>lblTipoMat}" text="{DatiGeneraliSet>/TipoMateriale} - {DatiGeneraliSet>/DescrizioneTipoMateriale}" />
+									<ObjectAttribute class="object-info-label"  title="{i18n>lblSocieta}" text="{DatiGeneraliSet>/DescrizioneSocieta}" />
+									<ObjectAttribute class="object-info-label" title="{i18n>lblSettIndu}" text="{DatiGeneraliSet>/SettoreIndustriale} - {DatiGeneraliSet>/DescrizioneSettoreIndustriale}" /-->
+									<ObjectAttribute class="object-info-label" visible="{= ${DatiGeneraliSet>/SAM}.charAt(0) === 'R' ? true : false }" title="{i18n>lblRifiuto}" text="{DatiGeneraliSet>/TestoRifiuto}" />
+									<!--ObjectAttribute 
+										class="object-info-label-locked" 
+										visible="{= ${DatiGeneraliSet>/BloccoMateriale} !== '' ? true : false }" 
+										text="{i18n>LockTotal}" /-->
+								</items>
+								<layoutData>
+									<FlexItemData growFactor="4" />
+								</layoutData>
+								</VBox>
+								<VBox>
+									<items>
+										<Label design="Bold" text="Stato:" />
+										<ProgressIndicator
+										id="ProgressState"
+										class="sapUiSmallMarginBottom progress"
+										height="1.3rem"
+										percentValue="{= ${DatiGeneraliSet>/SAM} === 'A1' ? '25' : 
+										${DatiGeneraliSet>/SAM} === 'A2' ? '50' : ${DatiGeneraliSet>/SAM} === 'A3' ? '75' : '100' }"
+										displayValue="{DatiGeneraliSet>/DescrizioneSAM}"
+										showValue="true"
+										state="{= ${DatiGeneraliSet>/SAM} === 'A' ? 'Success' : ${DatiGeneraliSet>/SAM}.charAt(0) === 'R' ? 'Error' :  'Warning' }" >
+										</ProgressIndicator>
+									</items>
+									<layoutData>
+										<FlexItemData growFactor="2" />
+									</layoutData>
+								</VBox>
+							</FlexBox>
+							</l:VerticalLayout>
+							</x:headerContent>
+
+						</x:ObjectPageLayout>	
+
+					</Panel>
+					
+					<IconTabBar
+						id="IconTabBar"
+						headerMode="Inline"
+						select="onTabSelect"
+						expandable="false"
+						upperCase="true"
+						class="sapUiResponsiveContentPadding">
+						<items>
+							
+							<IconTabFilter text="{i18n>tabSales}" icon="sap-icon://sales-quote" key="DatiVenditeSet">
+								<core:Fragment fragmentName="YVERT_WFI_GM_UI.view.fragment.sections.sales" type="XML"/>
+							</IconTabFilter>
+							<IconTabFilter text="{i18n>tabPurchase}" icon="sap-icon://batch-payments" key="DatiAcquistiSet">
+								<core:Fragment fragmentName="YVERT_WFI_GM_UI.view.fragment.sections.purchase" type="XML"/>
+							</IconTabFilter>
+							<IconTabFilter text="{i18n>tabEvents}" icon="sap-icon://expand-all" key="HistorySet" >
+								<core:Fragment fragmentName="YVERT_WFI_GM_UI.view.fragment.sections.events" type="XML"/>	
+							</IconTabFilter>
+						</items>
+					</IconTabBar>
+				</content>
+
+			</Page>
+
+</mvc:View>

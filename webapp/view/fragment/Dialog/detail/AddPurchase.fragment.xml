@@ -1,0 +1,213 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+
+	<l:Grid defaultSpan="XL12 L12 M12 S12" vSpacing="0">
+	
+		<VBox>
+			<items>
+				<Label design="Bold" class="sapUiSmallMarginTop required" text="{i18n>lblASocieta}" />
+				<ComboBox
+					id="dialogAddPurchase12"
+					width="100%"
+					app:add="X"
+					app:section="DatiAcquistiSet"
+					change="OnComboChange"
+					items="{path :  '/MatchCodesSet', filters : [{ path : 'Domain', operator : 'EQ', value1 : 'BUKRS'}] }">
+					<core:Item key="{Name}" text="{Name} - {Value}"/>
+				</ComboBox>
+
+			</items>
+		<layoutData>
+			<l:GridData span="XL4 L4 M4 S12" />
+		</layoutData>
+		</VBox>
+		
+		<VBox>
+			<items>
+				<Label class="sapUiSmallMarginTop required" design="Bold" text="{i18n>lblDAcquisti}" />
+				<ComboBox
+					id="dialogAddPurchase1"
+					width="100%"
+					enabled="{= ${temp>/IsSocietaASelected} }"
+					app:section="DatiAcquistiSet"
+					app:add="X"
+					change="OnComboChange"
+					items="{path : 'SocietaSetAddDatiAcquistiSet>/'}">
+					<core:Item text=""/>
+					<core:Item key="{SocietaSetAddDatiAcquistiSet>Name}" text="{SocietaSetAddDatiAcquistiSet>Name} - {SocietaSetAddDatiAcquistiSet>Value}"/>
+				</ComboBox>			
+			</items>
+		<layoutData>
+			<l:GridData span="XL4 L4 M4 S12"	/>
+		</layoutData>
+		</VBox>
+		
+		<VBox>
+			<items>
+				<Label design="Bold" class="sapUiSmallMarginTop" text="" />
+				
+				<CheckBox id="dialogAddPurchase16" selected="{= ${DatiAcquistiSet>/0/ContoEsercizio} === 'X' }" app:add="X" 
+				enabled="{= ${DatiAcquistiSet>/0/ContoEsercizio} === '' &amp;&amp; ${temp>/IsSocietaASelected}  }"
+				text="{i18n>lblCEsercizio}" app:section="DatiAcquistiSet" select="onChkSelect" app:type="CE" />
+			</items>
+		<layoutData>
+			<l:GridData span="XL12 L12 M12 S12" />
+		</layoutData>
+		</VBox>
+		
+		<VBox>
+			<items>
+				<Label visible="{= ${temp>/FlagEsercizio} === 'X' || ${DatiAcquistiSet>/0/ContoEsercizio} === 'X' }" class="sapUiSmallMarginTop required" design="Bold" text="{i18n>lblCVal}"></Label>	 
+				<ComboBox
+					id="dialogAddPurchase2"
+					change="OnGetCoge"
+					app:field="CL_VAL"
+					visible="{= ${temp>/FlagEsercizio} === 'X' }"
+					enabled="{= ${temp>/IsSocietaASelected} }"
+					app:add="X"
+					app:section="DatiAcquistiSet"
+					width="100%"
+					items="{path : 'MatchCodesAddCL_VAL>/'}">
+					<core:Item key="{MatchCodesAddCL_VAL>Name}" text="{MatchCodesAddCL_VAL>Name} - {MatchCodesAddCL_VAL>Value}"/>
+				</ComboBox>
+				<Input
+				id="dialogAddPurchase2_bis"
+				enabled="false"
+				visible="{= ${DatiAcquistiSet>/0/ContoEsercizio} === 'X' }"
+				value="{DatiAcquistiSet>/0/DescrizioneClasseVal}"
+				app:key="{DatiAcquistiSet>/0/ClasseVal}"
+				width="100%"
+				class="sapUiSmallMarginBottom"/>
+			</items>
+		<layoutData>
+			<l:GridData span="XL4 L4 M4 S12" />
+		</layoutData>
+		</VBox>
+
+
+	
+		<VBox visible="{= ${temp>/FlagEsercizio} === 'X' || ${DatiAcquistiSet>/0/ContoEsercizio} === 'X' }">
+			<items>
+				<Label design="Bold" class="sapUiSmallMarginTop required" text="{i18n>lblCogeA}">
+					
+				</Label>
+				<Input id="dialogAddPurchase5" enabled="false" value="{DatiAcquistiSet>/0/ContoCoGe}" maxLength="50"/> 
+			</items>
+		<layoutData>
+			<l:GridData span="XL4 L4 M4 S12"/>
+		</layoutData>
+		</VBox>
+		
+		<VBox visible="{= ${temp>/FlagEsercizio} === 'X' || ${DatiAcquistiSet>/0/ContoEsercizio} === 'X' }">
+			<items>
+				<Label design="Bold" class="sapUiSmallMarginTop sapUiSmallMarginEnd required" text="{i18n>lblDescrCogeA}" >
+					
+				</Label>
+				<Input id="dialogAddPurchase6" maxLength="50" value="{DatiAcquistiSet>/0/DescrizioneContoCoGe}" enabled="false"/> 
+			</items>
+		<layoutData>
+			<l:GridData span="XL4 L4 M4 S12"/>
+		</layoutData>
+		</VBox>
+				
+		<VBox>
+			<items>
+				<Label design="Bold" class="sapUiSmallMarginTop" text="" >
+					
+				</Label>
+
+
+				<CheckBox id="dialogAddPurchase11" app:type="CI" selected="{= ${DatiAcquistiSet>/0/ContoInvestimento} === 'X' }"
+				enabled="{= ${DatiAcquistiSet>/0/ContoInvestimento} === '' &amp;&amp; ${temp>/IsSocietaASelected} }"
+				 app:section="DatiAcquistiSet" app:add="X" 
+				text="{i18n>lblCInvestimento}" select="onChkSelect" />
+
+			</items>
+		<layoutData>
+			<l:GridData span="XL12 L12 M12 S12" />
+		</layoutData>
+		</VBox>
+		
+		<VBox>
+			<items>
+				<Label visible="{= ${temp>/FlagInvestimento} === 'X' || ${DatiAcquistiSet>/0/ContoInvestimento} === 'X'  }" class="sapUiSmallMarginTop required" design="Bold" text="{i18n>lblCValInv}"></Label>	 
+				<ComboBox
+					id="dialogAddPurchase13"
+					enabled="{= ${temp>/IsSocietaASelected} }"
+					change="OnGetCoge"
+					visible="{= ${temp>/FlagInvestimento} === 'X' }"
+					app:field="CL_VAL_I"
+					app:add="X"
+					app:Inv="X"
+					app:section="DatiAcquistiSet"
+					width="100%"
+					items="{path : 'MatchCodesAddCL_VAL_I>/'}">
+					<core:Item key="{MatchCodesAddCL_VAL_I>Name}" text="{MatchCodesAddCL_VAL_I>Name} - {MatchCodesAddCL_VAL_I>Value}"/>
+				</ComboBox>
+				<Input
+				id="dialogAddPurchase13_bis"
+				visible="{= ${DatiAcquistiSet>/0/ContoInvestimento} === 'X' }"
+				enabled="false"
+				value="{DatiAcquistiSet>/0/DescrizioneClasseValInvestimento}"
+				app:key="{DatiAcquistiSet>/0/ClasseValInvestimento}"
+				width="100%"
+				class="sapUiSmallMarginBottom"/>
+			</items>
+		<layoutData>
+			<l:GridData span="XL4 L4 M4 S12" />
+		</layoutData>
+		</VBox>
+	
+		<VBox visible="{= ${temp>/FlagInvestimento} === 'X' || ${DatiAcquistiSet>/0/ContoInvestimento} === 'X' }">
+			<items>
+				<Label design="Bold" class="sapUiSmallMarginTop required" text="{i18n>lblCogeInv}">
+					
+				</Label>
+				<Input id="dialogAddPurchase14" enabled="false" value="{DatiAcquistiSet>/0/ContoCoGeInvestimento}" maxLength="50"/> 
+			</items>
+		<layoutData>
+			<l:GridData span="XL4 L4 M4 S12"/>
+		</layoutData>
+		</VBox>
+		
+		<VBox visible="{= ${temp>/FlagInvestimento} === 'X' || ${DatiAcquistiSet>/0/ContoInvestimento} === 'X' }">
+			<items>
+				<Label design="Bold" class="sapUiSmallMarginTop sapUiSmallMarginEnd required" text="{i18n>lblDescrCogeInv}" >
+					
+				</Label>
+				<Input id="dialogAddPurchase15" maxLength="50" value="{DatiAcquistiSet>/0/DescrizioneContoCoGeInvestimento}" enabled="false"/> 
+			</items>
+		<layoutData>
+			<l:GridData span="XL4 L4 M4 S12"/>
+		</layoutData>
+		</VBox>
+		
+		<VBox>
+			<items>
+				<Label design="Bold" class="sapUiSmallMarginTop" text="" >
+					
+				</Label>
+
+				<CheckBox id="dialogAddPurchase9" enabled="{= ${temp>/IsSocietaASelected} }" 
+				app:section="DatiAcquistiSet" class="ChkExpand" text="{i18n>lblChkExpand} Vendite?" select="onChkExpand" />
+
+			</items>
+		<layoutData>
+			<l:GridData span="XL4 L4 M4 S12" linebreak="true" />
+		</layoutData>
+		</VBox>
+		
+		<VBox id="FPListV" visible="false">
+			<items>
+				<Label class="sapUiSmallMarginTop required" design="Bold" text="{i18n>lblFP} Vendite"></Label>	
+				<MultiInput width="100%" id="dialogAddPurchase10" app:fieldName="FPVList" tokenUpdate="onEditToken" valueHelpRequest="handleValueHelp">
+
+				</MultiInput>
+			</items>
+		<layoutData>
+			<l:GridData span="XL4 L4 M4 S12"/>
+		</layoutData>
+		</VBox>		
+	</l:Grid>	
+		
+</core:FragmentDefinition>

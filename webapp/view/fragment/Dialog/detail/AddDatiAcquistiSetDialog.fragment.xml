@@ -1,0 +1,24 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+
+	<Dialog title="{i18n>createAddDialogTitle} {DatiGeneraliSet>/CodiceMateriale} - {DatiGeneraliSet>/DescrizioneMateriale}" id="AddPurchaseDialog" type="Message" contentWidth="80%" contentHeight="550px" horizontalScrolling="true"
+		verticalScrolling="true" resizable="false" draggable="true" afterClose="closeDialog">
+	
+	<content>
+		<l:Grid hSpacing="0" width="100%" id="GridDisplayDesktop" defaultSpan="XL12 L12 M12 S12">
+		<l:content>
+			<Panel expanded="true" class="Form" headerText="{i18n>tabPurchase}">
+				<core:Fragment fragmentName="YVERT_WFI_GM_UI.view.fragment.Dialog.detail.AddPurchase" type="XML" />
+			</Panel>
+		</l:content>
+	</l:Grid>
+	</content>
+	<beginButton>
+		<Button text="{i18n>btn-save}"  app:add="X" app:datapathmodel="DatiAcquistiSet" press="OnCreate" />
+	</beginButton>
+	<endButton>
+		<Button text="{i18n>btn-annulla}" app:section="AddDatiAcquistiSet" press="onCloseAddDialog" />		
+	</endButton>
+	
+	</Dialog>
+</core:FragmentDefinition>

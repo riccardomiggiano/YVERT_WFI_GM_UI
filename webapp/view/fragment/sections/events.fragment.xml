@@ -1,0 +1,44 @@
+<core:FragmentDefinition 
+	xmlns="sap.m" 
+	xmlns:core="sap.ui.core"
+	xmlns:l="sap.ui.layout" 
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	
+	
+	<Table id="eventsTable" 
+	width="100%"
+	items="{path: 'HistorySet>/'}"
+	inset="true" 
+	growing="true"
+	visible="true" 
+	growingScrollToLoad="true" 
+	growingThreshold="9999" 
+	class="sapUiTinyMarginEnd sapUiSmallMarginTop tbMat" 
+	 mode="None"> 
+		<columns>
+			<Column demandPopin="true" minScreenWidth="Tablet" >
+				<Text text="{i18n>table-name-column-Utente}" />
+			</Column>
+			<Column demandPopin="true" minScreenWidth="Tablet">
+				<Text text="{i18n>table-name-column-Evento}" />
+			</Column>
+			<Column demandPopin="true" minScreenWidth="Tablet">
+				<Text text="{i18n>table-name-column-DataOra}"/>
+			</Column>
+
+		</columns>
+		<items>
+			<ColumnListItem>
+				<cells>
+					<ObjectIdentifier text="{HistorySet>Utente}" app:bindedProp="Utente"/>
+					<ObjectIdentifier text="{HistorySet>DecrizioneEvento}" app:bindedProp="DecrizioneEvento"/>
+					<ObjectIdentifier text="{HistorySet>Data}, {HistorySet>Ora}" app:bindedProp="Data"/>
+					
+				</cells>
+			</ColumnListItem> 
+			
+		</items>
+	</Table>
+
+
+</core:FragmentDefinition>

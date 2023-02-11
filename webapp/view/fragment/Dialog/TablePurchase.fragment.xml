@@ -1,0 +1,53 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+
+
+	<Table
+		id="tablePurchase"
+		inset="false" 
+		items="{
+				path: 'DatiAcquistiSet>/'
+			}"
+		class="sapUiTinyMarginEnd sapUiSmallMarginTop table" 
+		width="100%">
+		<headerToolbar>
+			<OverflowToolbar>
+				<content>
+				<ToolbarSpacer />
+					 <Button text="{i18n>btn-ampliamento}" tooltip="{i18n>btn-ampliamento}" type="Default" press="onExpand"  app:datapathmodel="DatiAcquistiSet"
+					 visible="{= ${authorizations>/CreazioneDA} === 'X' &amp;&amp; ${DatiGeneraliSet>/FAM} === 'X' &amp;&amp; ${DatiGeneraliSet>/BloccoMateriale} === ''}"/>
+				</content>
+			</OverflowToolbar>
+		</headerToolbar>
+		<columns>
+			<Column  minScreenWidth="Tablet" demandPopin="true">
+				<Text text="{i18n>lblASocieta}"/>
+			</Column>
+			<Column  minScreenWidth="Tablet" demandPopin="true">
+				<Text text="{i18n>lblDAcquisti}"/>
+			</Column>
+			<Column minScreenWidth="Tablet" demandPopin="true">
+				<Text text="{i18n>lblCVal}"/>
+			</Column>
+			<Column minScreenWidth="Tablet" demandPopin="true">
+				<Text text="{i18n>lblCValInv}"/>
+			</Column>
+			<Column minScreenWidth="Tablet" demandPopin="true">
+				<Text text=""/>
+			</Column>
+		</columns>
+		<items>
+			<ColumnListItem>
+				<cells>
+					<ObjectIdentifier text="{DatiAcquistiSet>Societa} - {DatiAcquistiSet>DescrizioneSocieta}" app:bindedProp="DescrizioneSocieta"/>
+					<ObjectIdentifier text="{DatiAcquistiSet>DivisioneAcquisti} - {DatiAcquistiSet>DescrizioneDivisioneAcquisti}" app:bindedProp="DivisioneAcquisti"/>
+					<ObjectIdentifier text="{DatiAcquistiSet>ClasseVal} - {DatiAcquistiSet>DescrizioneClasseVal}" app:bindedProp="ClasseVal"/>
+					<ObjectIdentifier text="{DatiAcquistiSet>ClasseValInvestimento} - {DatiAcquistiSet>DescrizioneClasseValInvestimento}" app:bindedProp="ClasseValInvestimento"/>
+					<Button type="Transparent" tooltip="{i18n>btn-detail-action}" visible="{= (${authorizations>/Societa} === ${DatiAcquistiSet>Societa}) || ${authorizations>/Societa} === '*'  }" app:section="DatiAcquistiSet" 
+					icon="sap-icon://display" press="onButtonDetailActionPress" />
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+
+</core:FragmentDefinition>

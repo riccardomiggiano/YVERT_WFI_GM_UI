@@ -1,0 +1,49 @@
+<core:FragmentDefinition 
+	xmlns="sap.m"
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<Dialog title="{i18n>RejectDialogTitle}" type="Message" 
+		contentWidth="" contentHeight="" horizontalScrolling="true"
+		verticalScrolling="true" resizable="false" draggable="true">
+		<content>
+		<l:Grid defaultSpan="XL12 L12 M12 S12" vSpacing="0" >
+			<Text text="*{i18n>CreationErrorMessageBox}" visible="{temp>/ErrorText}"></Text>
+			<VBox id="BoxBackToUser" visible="{= ${DatiGeneraliSet>/SAM} === 'A2'}">
+				<items>
+					<Label text="*{i18n>lblbackToUser}" />
+					<Select id="comboBackToUser" 
+						items="{path: 'temp>/Approvers'}"
+						forceSelection="false"
+						width="100%"
+						change="OnSelectUser">
+						<core:Item key="{temp>Key}" text="{temp>Value}"/>
+					</Select>
+				</items>
+			<layoutData>
+				<l:GridData span="XL12 L12 M12 S12"	/>
+			</layoutData>
+			</VBox>
+			<VBox>
+				<items>
+					<Label text="*{i18n>RejectDialogMotivation}" />
+					<TextArea id="txtMotivation" width="100%" change="OnTxtMotivation"/>
+				</items>
+			<layoutData>
+				<l:GridData span="XL12 L12 M12 S12"	/>
+			</layoutData>
+			</VBox>
+			
+		</l:Grid>
+		</content>
+		<beginButton>
+			<Button text="{i18n>confirmDialog}" iconFirst="false" app:action="{= ${DatiGeneraliSet>/SAM} === 'A2' ? 'R2' : ${DatiGeneraliSet>/SAM} === 'A3' ? 'R3' : 'R1' }" type="Default"
+				press="onApproveRejectPress" />
+		</beginButton>
+		<endButton>
+			<Button text="{i18n>rejectDialog}" iconFirst="false" type="Default"
+				press="closeDialog" />
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,25 @@
+# yaml-language-server: $schema=https://sap.github.io/ui5-tooling/schema/ui5.yaml.json
+
+specVersion: '2.4'
+metadata:
+  name: 'yvert_wfi_gm_ui'
+type: application
+builder:
+  resources:
+    excludes:
+      - /test/**
+      - /localService/**
+  customTasks:
+    - name: deploy-to-abap
+      afterTask: generateCachebusterInfo
+      configuration:
+        target:
+          url: http://fshappmdsl01s.pgs.local:8000
+        credentials:
+          username: env:ENV_USER
+          password: env:ENV_PWD
+        app:
+          name: YVERT_WFI_GM_UI
+          description: Gestione Materiali
+          package: YVERT_WFI
+          transport: MDSK916422

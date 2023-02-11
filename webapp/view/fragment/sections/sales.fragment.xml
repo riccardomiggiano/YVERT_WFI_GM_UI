@@ -1,0 +1,28 @@
+<core:FragmentDefinition 
+	xmlns="sap.m" 
+	xmlns:core="sap.ui.core"
+	xmlns:l="sap.ui.layout" 
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	
+
+		
+		<core:Fragment fragmentName="YVERT_WFI_GM_UI.view.fragment.Dialog.TableSales" type="XML" />
+		
+		<Panel id="DetailSales" visible="{= ${temp>/IsVisibleDetailDatiVenditeSet} }">
+				<OverflowToolbar id="DVToolbar" class="ss-toolbar">
+				<ToolbarSpacer/>
+				
+				<!--Button text="{i18n>btn-lock}" icon='sap-icon://locked' tooltip="{i18n>btn-lock}"  type="Transparent"  press="onSalesBlock" 
+				app:datapathmodel="DatiVenditeSet" app:datapathmodelDet="DatiVenditeSetDetail" app:action="BS"
+					visible="{= ${authorizations>/ModificaDV} === 'X' &amp;&amp; ${DatiGeneraliSet>/SAM} === 'A' &amp;&amp; ${DatiGeneraliSet>/BloccoMateriale} === '' &amp;&amp; ${temp>/SalesBlock} === false }"/-->
+					
+				<Button text="{= ${temp>/isClicked/DatiVenditeSet} === true ? 'Salva' : 'Modifica'}" icon="{= ${temp>/isClicked/DatiVenditeSet} === true ? 'sap-icon://accept' : 'sap-icon://edit'}" tooltip="{= ${temp>/isClicked/DatiVenditeSet} === true ? 'Salva' : 'Modifica' }" type="Transparent"  press="onSectionEditPress" 
+				app:datapathmodel="DatiVenditeSet" app:datapathmodelDet="DatiVenditeSetDetail"
+					visible="{= ${authorizations>/ModificaDV} === 'X' &amp;&amp; ${DatiGeneraliSet>/SAM}.charAt(0) === 'R' &amp;&amp; ${DatiGeneraliSet>/SendToFPA} === ''}"/>
+
+			</OverflowToolbar>
+			<core:Fragment fragmentName="YVERT_WFI_GM_UI.view.fragment.Dialog.Sales" type="XML" />
+		</Panel>
+
+
+</core:FragmentDefinition>

@@ -1,0 +1,99 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	
+	
+	<!-- <l:VerticalLayout width="100%" visible="true"> -->
+<ScrollContainer width="100%" height="400px" vertical="true" horizontal="true" focusable="true">
+	<Table id="materialTable" 
+	width="160rem"
+	items="{path: 'HomePageSet>/'}"
+	inset="true" 
+	growing="true" 
+	growingScrollToLoad="true"
+	sticky="HeaderToolbar,InfoToolbar,ColumnHeaders"
+	visible="false" 
+	class="sapUiTinyMarginEnd sapUiSmallMarginTop tbMat" 
+	 mode="None"> 
+	
+		<headerToolbar>
+			<Toolbar>
+				<Title id="requestItemsToolbar" text="Lista Materiali"/>
+			</Toolbar>
+		</headerToolbar>
+		<columns>
+			<Column demandPopin="true" minScreenWidth="Tablet" >
+				<Text text="{i18n>table-name-column-materiale}" />
+			</Column>
+			<Column demandPopin="true" minScreenWidth="Tablet">
+				<Text text="{i18n>table-name-column-materialeI}" />
+			</Column>
+			<Column demandPopin="true" minScreenWidth="Tablet">
+				<Text text="{i18n>table-name-column-DescMat}"/>
+			</Column>
+			<Column demandPopin="true" minScreenWidth="Tablet">
+				<Text text="{i18n>table-name-column-societaV}"/>
+			</Column>
+			<Column demandPopin="true" minScreenWidth="Tablet">
+				<Text text="{i18n>table-name-column-societa}"/>
+			</Column>
+			<Column demandPopin="true" minScreenWidth="Tablet">
+				<Text text="{i18n>table-name-column-vendite}"/>
+			</Column>
+			<Column demandPopin="true" minScreenWidth="Tablet">
+				<Text text="{i18n>table-name-column-Gdc}"/>
+			</Column>
+			<Column demandPopin="true" minScreenWidth="Tablet">
+				<Text text="{i18n>table-name-column-cogeV}"/>
+			</Column>
+			<Column demandPopin="true" minScreenWidth="Tablet">
+				<Text text="{i18n>table-name-column-societaA}"/>
+			</Column>
+			<Column demandPopin="true" minScreenWidth="Tablet">
+				<Text text="{i18n>table-name-column-cogeA}"/>
+			</Column>
+			<Column demandPopin="true" minScreenWidth="Tablet">
+				<Text text="{i18n>table-name-column-cogeI}"/>
+			</Column>
+			<Column demandPopin="true" minScreenWidth="Tablet" >
+				<Text text="{i18n>table-name-column-SAM}"/>
+			</Column>
+			
+		</columns>
+		<items>
+			<ColumnListItem type="Navigation" press="_showDetail">
+				<cells>
+					<!-- <FlexBox>
+						 <Button  enabled="false" height="2px" class="Marker" icon="sap-icon://wallet" visible="{= ${HomePageSet>ContoInvestimento} === 'X'}" tooltip="Conto investimento" type="Transparent" />
+						<Text text="{HomePageSet>CodiceMateriale}"  app:bindedProp="CodiceMateriale"></Text>
+					</FlexBox> -->
+					<ObjectIdentifier text="{HomePageSet>CodiceMateriale}" app:bindedProp="CodiceMateriale"/>
+					<ObjectIdentifier text="{HomePageSet>CodiceMaterialeI}" app:bindedProp="CodiceMaterialeI"/>
+					<ObjectIdentifier text="{HomePageSet>DescrizioneMateriale}" app:bindedProp="DescrizioneMateriale"/>
+					<ObjectIdentifier text="{HomePageSet>SocietaV} - {HomePageSet>DescrizioneSocietaV}" app:bindedProp="DescrizioneSocietaV"/>
+					<ObjectIdentifier text="{HomePageSet>SocietaVendite} - {HomePageSet>DescrizioneSocietaVendite}" app:bindedProp="DescrizioneSocietaVendite"/>
+					<ObjectIdentifier text="{HomePageSet>DivisioneVendite} - {HomePageSet>DescrizioneDivisioneVendite}" app:bindedProp="DescrizioneDivisioneVendite"/>
+					<ObjectIdentifier text="{HomePageSet>GdC} - {HomePageSet>DescrizioneGdC}" app:bindedProp="DescrizioneGdC"/>
+					<ObjectIdentifier text="{HomePageSet>ContoCoGeV} - {HomePageSet>DescrizioneContoCoGeV}" app:bindedProp="DescrizioneContoCoGeV"/>
+					<ObjectIdentifier text="{HomePageSet>SocietaA} - {HomePageSet>DescrizioneSocietaA}" app:bindedProp="DescrizioneSocietaA"/>
+					<ObjectIdentifier text="{HomePageSet>ContoCoGeA} - {HomePageSet>DescrizioneContoCoGeA}" app:bindedProp="DescrizioneContoCoGeA"/>
+					<ObjectIdentifier text="{HomePageSet>ContoCoGeI} - {HomePageSet>DescrizioneContoCoGeI}" app:bindedProp="DescrizioneContoCoGeI"/>
+						<!-- ProgressIndicator
+						class="sapUiSmallMarginBottom"
+						width="100%"
+						height="1.5rem"
+						percentValue="{= ${HomePageSet>SAM} === 'AA' ? '40' : ${HomePageSet>SAM} === 'A1' ? '20' : 
+						${HomePageSet>SAM} === 'A2' ? '60' : ${HomePageSet>SAM} === 'A3' ? '80' : '100' }"
+						displayValue="{HomePageSet>DescrizioneSAM}"
+						showValue="true"
+						state="{= ${HomePageSet>SAM} === 'A' ? 'Success' : ${HomePageSet>SAM}.charAt(0) === 'R' ? 'Error' :  'Warning' }" /> -->
+						<ObjectStatus icon="{= ${HomePageSet>SAM} === 'A' ? 'sap-icon://accept' : ${HomePageSet>SAM}.charAt(0) === 'R' ? 'sap-icon://decline' : 'sap-icon://in-progress'}" text="{HomePageSet>DescrizioneSAM}" state="{= ${HomePageSet>SAM} === 'A' ? 'Success' : ${HomePageSet>SAM}.charAt(0) === 'R' ? 'Error' :  'Warning'}" app:bindedProp="Privacy"/>
+					
+				</cells>
+			</ColumnListItem> 
+			
+		</items>
+	</Table>
+</ScrollContainer>
+
+	<!-- /l:VerticalLayout> -->
+</core:FragmentDefinition>

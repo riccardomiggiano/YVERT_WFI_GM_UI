@@ -1,0 +1,319 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core" xmlns:fb="sap.ui.comp.filterbar"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+
+	<l:VerticalLayout width="100%" visible="true">
+
+		<fb:FilterBar reset="onResetFilter" clear="onResetFilter"
+			search="onFilterBarSearch" showFilterConfiguration="false"
+			showRestoreButton="true" showClearButton="true" showClearOnFB="true"
+			filterContainerWidth="20rem">
+
+			<fb:filterGroupItems>
+
+				<!-- Codice Materiale -->
+
+				<fb:FilterGroupItem groupName="Search"
+					name="MaterialeSearch" label="{i18n>table-name-column-materiale}"
+					visibleInFilterBar="true">
+					<fb:control>
+						<FlexBox>
+							<Input id="CodiceMateriale" showValueHelp="true"
+								valueHelpOnly="true" valueHelpRequest="handleValueHelp"
+								app:fieldName="Materiale" app:filterTableField="CodiceMateriale"
+								class="sapUiSmallMarginBottom" width="100%">
+								<layoutData>
+									<FlexItemData growFactor="3" baseSize="90%" />
+								</layoutData>
+							</Input>
+							<Button type="Transparent" icon="sap-icon://eraser"
+								press="onSingleReset" app:BtnFor="CodiceMateriale"
+								tooltip="reset">
+
+							</Button>
+						</FlexBox>
+
+					</fb:control>
+				</fb:FilterGroupItem>
+
+				<!-- Descrizione Materiale -->
+
+				<fb:FilterGroupItem groupName="Search"
+					name="TipoMaterialeSearch" label="{i18n>table-name-column-DescMat}"
+					visibleInFilterBar="true">
+					<fb:control>
+						<FlexBox>
+							<MultiInput width="100%" id="DescrizioneMateriale"
+								valueHelpOnly="true" app:fieldName="DescrizioneMateriale"
+								tokenUpdate="onEditToken" valueHelpRequest="handleValueHelp">
+								<layoutData>
+									<FlexItemData growFactor="3" baseSize="90%" />
+								</layoutData>
+							</MultiInput>
+							<Button type="Transparent" icon="sap-icon://eraser"
+								press="onSingleReset" app:BtnFor="DescrizioneMateriale"
+								tooltip="reset">
+
+							</Button>
+
+
+						</FlexBox>
+					</fb:control>
+				</fb:FilterGroupItem>
+
+				<!-- Società vendite -->
+
+				<fb:FilterGroupItem groupName="Search"
+					name="SocietaVSearch" label="{i18n>table-name-column-societaV}"
+					visibleInFilterBar="true">
+					<fb:control>
+						<FlexBox>
+							<Input id="SocietaV" showValueHelp="true"
+								valueHelpOnly="true" valueHelpRequest="handleValueHelp"
+								app:fieldName="SocietaV" app:filterTableField="SocietaV"
+								class="sapUiSmallMarginBottom" width="100%">
+								<layoutData>
+									<FlexItemData growFactor="3" baseSize="90%" />
+								</layoutData>
+							</Input>
+
+							<Button type="Transparent" icon="sap-icon://eraser"
+								press="onSingleReset" app:BtnFor="SocietaV" tooltip="reset">
+
+							</Button>
+
+						</FlexBox>
+					</fb:control>
+				</fb:FilterGroupItem>
+
+				<!-- Organizzazione Commerciale -->
+
+				<fb:FilterGroupItem groupName="Search"
+					name="SocietaSearch" label="{i18n>table-name-column-societa}"
+					visibleInFilterBar="true">
+					<fb:control>
+						<FlexBox>
+							<Input id="SocietaVendite" showValueHelp="true"
+								valueHelpOnly="true" valueHelpRequest="handleValueHelp"
+								app:fieldName="Societa" app:filterTableField="SocietaVendite"
+								class="sapUiSmallMarginBottom" width="100%">
+								<layoutData>
+									<FlexItemData growFactor="3" baseSize="90%" />
+								</layoutData>
+							</Input>
+
+							<Button type="Transparent" icon="sap-icon://eraser"
+								press="onSingleReset" app:BtnFor="SocietaVendite"
+								tooltip="reset">
+
+							</Button>
+
+						</FlexBox>
+					</fb:control>
+				</fb:FilterGroupItem>
+
+				<!-- Canale di distribuzione -->
+				<fb:FilterGroupItem groupName="Search"
+					name="DVenditeSearch" label="{i18n>table-name-column-vendite}"
+					visibleInFilterBar="true">
+					<fb:control>
+						<FlexBox>
+							<Input id="DivisioneVendite" showValueHelp="true"
+								valueHelpOnly="true" valueHelpRequest="handleValueHelp"
+								app:fieldName="DVendite" app:filterTableField="DivisioneVendite"
+								class="sapUiSmallMarginBottom" width="100%">
+								<layoutData>
+									<FlexItemData growFactor="3" baseSize="90%" />
+								</layoutData>
+							</Input>
+							<Button type="Transparent" icon="sap-icon://eraser"
+								press="onSingleReset" app:BtnFor="DivisioneVendite"
+								tooltip="reset">
+
+							</Button>
+						</FlexBox>
+					</fb:control>
+				</fb:FilterGroupItem>
+
+				<!-- GDC -->
+
+				<fb:FilterGroupItem groupName="Search"
+					name="GdCSearch" label="{i18n>table-name-column-Gdc}"
+					visibleInFilterBar="true">
+					<fb:control>
+						<FlexBox>
+							<Input id="GdC" showValueHelp="true" valueHelpOnly="true"
+								valueHelpRequest="handleValueHelp" app:fieldName="GdC"
+								app:filterTableField="GdC" class="sapUiSmallMarginBottom"
+								width="100%">
+								<layoutData>
+									<FlexItemData growFactor="3" baseSize="90%" />
+								</layoutData>
+							</Input>
+
+							<Button type="Transparent" icon="sap-icon://eraser"
+								press="onSingleReset" app:BtnFor="GdC" tooltip="reset">
+
+							</Button>
+
+						</FlexBox>
+					</fb:control>
+				</fb:FilterGroupItem>
+
+				<!-- COGE vendite -->
+
+				<fb:FilterGroupItem groupName="Search"
+					name="ContoCoGeVSearch" label="{i18n>table-name-column-cogeV}"
+					visibleInFilterBar="true">
+					<fb:control>
+						<FlexBox>
+							<Input id="ContoCoGeV" showValueHelp="true"
+								valueHelpOnly="true" valueHelpRequest="handleValueHelp"
+								app:fieldName="COGEV" app:filterTableField="ContoCoGeV"
+								class="sapUiSmallMarginBottom" width="100%">
+								<layoutData>
+									<FlexItemData growFactor="3" baseSize="90%" />
+								</layoutData>
+							</Input>
+
+							<Button type="Transparent" icon="sap-icon://eraser"
+								press="onSingleReset" app:BtnFor="ContoCoGeV" tooltip="reset">
+
+							</Button>
+
+						</FlexBox>
+					</fb:control>
+				</fb:FilterGroupItem>
+
+				<!-- Società acquisti -->
+
+				<fb:FilterGroupItem groupName="Search"
+					name="SocietaASearch" label="{i18n>table-name-column-societaA}"
+					visibleInFilterBar="true">
+					<fb:control>
+						<FlexBox>
+							<Input id="SocietaA" showValueHelp="true"
+								valueHelpOnly="true" valueHelpRequest="handleValueHelp"
+								app:fieldName="SocietaA" app:filterTableField="SocietaA"
+								class="sapUiSmallMarginBottom" width="100%">
+								<layoutData>
+									<FlexItemData growFactor="3" baseSize="90%" />
+								</layoutData>
+							</Input>
+
+							<Button type="Transparent" icon="sap-icon://eraser"
+								press="onSingleReset" app:BtnFor="SocietaA" tooltip="reset">
+
+							</Button>
+
+						</FlexBox>
+					</fb:control>
+				</fb:FilterGroupItem>
+
+				<!-- Conto Co.Ge. Acquisti Conto Esercizio -->
+
+				<fb:FilterGroupItem groupName="Search"
+					name="ContoCoGeASearch" label="{i18n>table-name-column-cogeA}"
+					visibleInFilterBar="true">
+					<fb:control>
+						<FlexBox>
+							<Input id="ContoCoGeA" showValueHelp="true"
+								valueHelpOnly="true" valueHelpRequest="handleValueHelp"
+								app:fieldName="COGEA" app:filterTableField="ContoCoGeA"
+								class="sapUiSmallMarginBottom" width="100%">
+								<layoutData>
+									<FlexItemData growFactor="3" baseSize="90%" />
+								</layoutData>
+							</Input>
+
+							<Button type="Transparent" icon="sap-icon://eraser"
+								press="onSingleReset" app:BtnFor="ContoCoGeA" tooltip="reset">
+
+							</Button>
+
+						</FlexBox>
+					</fb:control>
+				</fb:FilterGroupItem>
+
+				<!-- Conto Co.Ge. Acquisti Conto Investimento -->
+
+				<fb:FilterGroupItem groupName="Search"
+					name="ContoCoGeISearch" label="{i18n>table-name-column-cogeI}"
+					visibleInFilterBar="true">
+					<fb:control>
+						<FlexBox>
+							<Input id="ContoCoGeI" showValueHelp="true"
+								valueHelpOnly="true" valueHelpRequest="handleValueHelp"
+								app:fieldName="COGEI" app:filterTableField="ContoCoGeI"
+								class="sapUiSmallMarginBottom" width="100%">
+								<layoutData>
+									<FlexItemData growFactor="3" baseSize="90%" />
+								</layoutData>
+							</Input>
+
+							<Button type="Transparent" icon="sap-icon://eraser"
+								press="onSingleReset" app:BtnFor="ContoCoGeI" tooltip="reset">
+
+							</Button>
+
+						</FlexBox>
+					</fb:control>
+				</fb:FilterGroupItem>
+				
+				<!-- fb:FilterGroupItem groupName="Search" name="DAcquistiSearch" label="{i18n>table-name-column-acquisti}" 
+					visibleInFilterBar="true"> <fb:control> <FlexBox> <Input id="DivisioneAcquisti" 
+					showValueHelp="true" valueHelpOnly="true" valueHelpRequest="handleValueHelp" 
+					app:fieldName="DAcquisti" app:filterTableField="DivisioneAcquisti" class="sapUiSmallMarginBottom" 
+					width="100%" /> <Button type="Transparent" icon="sap-icon://eraser" press="onSingleReset" 
+					app:BtnFor="DivisioneAcquisti" tooltip="reset" /> </FlexBox> </fb:control> 
+					</fb:FilterGroupItem> -->
+
+				<!-- Stato Avanzamento Materiale -->
+
+				<fb:FilterGroupItem groupName="Search"
+					name="SAMSearch" label="{i18n>table-name-column-SAM}"
+					visibleInFilterBar="true">
+					<fb:control>
+						<FlexBox>
+							<MultiInput width="100%" id="SAM" valueHelpOnly="true"
+								app:fieldName="SAM" tokenUpdate="onEditToken"
+								valueHelpRequest="handleValueHelp">
+								<layoutData>
+									<FlexItemData growFactor="3" baseSize="90%" />
+								</layoutData>
+							</MultiInput>
+							<Button type="Transparent" icon="sap-icon://eraser"
+								press="onSingleReset" app:BtnFor="SAM" tooltip="reset" />
+						</FlexBox>
+					</fb:control>
+				</fb:FilterGroupItem>
+
+				<!-- Conto Investimento/Conto Esercizio SI NO TUTTI -->
+
+				<fb:FilterGroupItem groupName="Search"
+					name="CISearch" label="Tipo Materiale [{temp>/TipoConto}]"
+					visibleInFilterBar="true">
+					<fb:control>
+
+							<Slider id="ContoInvestimento" 
+									min="0" 
+									max="2" 
+									app:fieldName="ContoInvestimento"
+									enableTickmarks="false" 
+									class="sapUiSmallMarginBottom" 
+									width="100%" 
+									change="onChangeSlider">
+								<ResponsiveScale tickmarksBetweenLabels="1"/>   
+   							</Slider>
+
+					</fb:control>
+				</fb:FilterGroupItem>
+												
+			</fb:filterGroupItems>
+
+		</fb:FilterBar>
+
+	</l:VerticalLayout>
+
+</core:FragmentDefinition>
